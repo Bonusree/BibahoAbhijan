@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="বনশ্রী দত্ত ও মিলন মাহাতোর শুভ বিবাহের নিমন্ত্রণপত্র">
+<meta property="og:title" content="বনশ্রী ও মিলনের শুভ বিবাহ">
+<meta property="og:description" content="৮ই অগ্রহায়ণ ১৪৩৩ (২৫শে নভেম্বর ২০২৬), দেশপ্রিয় সেন্টার, লাকসাম রোড, কুমিল্লা। সবান্ধবে আমন্ত্রিত।">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/img/cover.jpg">
+<meta name="theme-color" content="#2c0a07">
+<title>বনশ্রী ও মিলনের শুভ বিবাহ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Galada&family=Tiro+Bangla&family=Hind+Siliguri:wght@400;500;600&display=swap">
+<style>
+/* Layout: a hardbound invitation book on a sindoor-velvet table, one page at a time, each page filling the screen
+   (about 1cm of table showing around it). Pages: framed cover · পরিচয় ও নিমন্ত্রণ (bride | poem | groom, like a tri-fold card)
+   · স্মারকলিপি · red last page with the yagna painting. Pages reshape for wide screens via container queries.
+   Turned with a real curl (page-flip). Single-theme like printed card stock. */
+:root{
+  --velvet:#5e1712; --velvet-2:#2c0a07;
+  --paper:#f6e0b4; --cream:#fbefd6; --sindoor:#b3311f; --haldi:#e6a62c;
+  --bark:#3c1a12; --terra:#c8643c;
+  --f-display:"Galada","Noto Serif Bengali","Kohinoor Bangla",serif;
+  --f-body:"Tiro Bangla","Noto Serif Bengali","Kohinoor Bangla",serif;
+  --f-ui:"Hind Siliguri","Noto Sans Bengali","Kohinoor Bangla",sans-serif;
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .28 0 0 0 0 .15 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --gap:min(1cm, 4vw);   /* the table showing around the page */
+  /* type unit inside a page: 1% of a portrait card's width, so text never outgrows a wide page's height */
+  --u:min(1cqw, .6667cqh);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial-gradient(ellipse at 50% 40%,var(--velvet) 0%,var(--velvet-2) 75%);color:var(--cream);font-family:var(--f-body)}
+#petals{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.stage{position:relative;z-index:1;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center}
+.book-wrap{width:calc(100vw - 2 * var(--gap));height:calc(100vh - 2 * var(--gap))}
+@supports (height:100svh){.book-wrap{height:calc(100svh - 2 * var(--gap))}}
+#book{width:100%;height:100%}
+#book:not(.stf__parent) .page:not(:first-child){display:none}
+#book:not(.stf__parent) .page:first-child{width:100%;height:100%}
+
+/* ---------- page base ---------- */
+.page{background:var(--paper);overflow:hidden;container-type:size}
+.pg{position:relative;width:100%;height:100%;overflow:hidden}
+
+/* ---------- terracotta pages: dark scalloped arches, banana leaves behind the top corners ---------- */
+.tpage{background:var(--terra);background-image:var(--noise);color:var(--cream);text-align:center;padding:calc(3*var(--u))}
+.pn{position:relative;display:flex;flex-direction:column;min-height:0;min-width:0}
+.pn .leaves{position:absolute;top:calc(var(--leaf) * -.42);width:var(--leaf);height:auto;z-index:0;pointer-events:none}
+.pn .leaves.l{left:calc(var(--leaf) * -.18);transform:rotate(-8deg)}
+.pn .leaves.r{right:calc(var(--leaf) * -.18);transform:scaleX(-1) rotate(-8deg)}
+.pcap{position:relative;z-index:1;flex:none}
+.pcap .cap{display:block;width:100%;height:var(--caph);fill:var(--bark)}
+.pcap h2{position:absolute;left:0;right:0;bottom:0;margin:0;font-family:var(--f-display);font-weight:400;font-size:var(--h2);line-height:1.2;color:var(--cream)}
+.pcap .praj{position:absolute;left:0;right:0;bottom:calc(.4*var(--u));margin:0;font-size:calc(2.8*var(--u));color:var(--haldi)}
+.pbody{position:relative;z-index:1;flex:1;min-height:0;background:var(--bark);margin-top:-1px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(.9*var(--u));padding:calc(.6*var(--u)) calc(2.6*var(--u)) calc(3*var(--u))}
+.rule{width:min(100%, calc(40*var(--u)));height:auto;flex:none}
+.pn .kal{margin:0;font-size:calc(2.8*var(--u));color:#e9cfa5}
+.pn .nm{margin:0;font-family:var(--f-display);font-size:calc(4.8*var(--u));line-height:1.2;color:var(--haldi)}
+.pn .det{margin:0;font-size:calc(2.8*var(--u));line-height:1.55}
+.roses{display:flex;align-items:center;gap:calc(2*var(--u));margin-top:calc(.4*var(--u))}
+.roses svg{width:calc(5*var(--u));height:calc(5*var(--u))}
+.roses i{width:calc(1.1*var(--u));height:calc(1.1*var(--u));border-radius:50%;background:var(--terra)}
+.orn{width:calc(26*var(--u));height:auto;flex:none}
+.verse{margin:0;font-size:calc(3.3*var(--u));line-height:1.45}
+.verse .dari{color:var(--haldi)}
+
+/* পরিচয় ও নিমন্ত্রণ — phones: bride and groom side by side on top, poem below */
+.tri{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;grid-template-areas:"b g" "m m";column-gap:calc(2.4*var(--u));row-gap:calc(7.5*var(--u));padding-top:calc(7*var(--u))}
+.tri .bride{grid-area:b} .tri .groom{grid-area:g} .tri .mid{grid-area:m}
+.tri .side{--caph:calc(9*var(--u));--leaf:calc(18*var(--u));--h2:calc(5*var(--u))}
+.tri .side .det{font-size:calc(3*var(--u))}
+.tri .side .nm{font-size:calc(5.4*var(--u))}
+.tri .side .pbody{padding-inline:calc(1.6*var(--u))}
+.tri .side .rule{width:90%}
+.tri .mid{--caph:calc(14*var(--u));--leaf:calc(28*var(--u))}
+/* wide screens: bride | poem | groom, like the printed tri-fold */
+@container (orientation: landscape){
+  .tri{grid-template-columns:1fr 1.5fr 1fr;grid-template-rows:1fr;grid-template-areas:"b m g";column-gap:2.4cqw;padding:5.4cqw 2.4cqw 2.4cqw}
+  .tri .side{--caph:6.2cqw;--leaf:min(11cqw, 20cqh)}
+  .tri .mid{--caph:7.6cqw;--leaf:min(13cqw, 24cqh)}
+  .tri .side .pbody{gap:calc(1.4*var(--u))}
+  .tri .side{--h2:calc(7*var(--u))}
+  .tri .side .pbody{gap:calc(2*var(--u))}
+  .tri .pn .nm{font-size:calc(7.4*var(--u))}
+  .tri .pn .det{font-size:calc(4*var(--u));line-height:1.65}
+  .tri .pn .kal{font-size:calc(3.8*var(--u))}
+  .tri .pcap .praj{font-size:calc(3.4*var(--u))}
+  .tri .verse{font-size:calc(3.3*var(--u));line-height:1.5}
+  .tri .roses svg{width:calc(7*var(--u));height:calc(7*var(--u))}
+}
+
+/* squat portrait screens (small tablets, split windows): a little less room for the poem */
+@container (orientation: portrait) and (min-aspect-ratio: 11/20){
+  .tri{row-gap:calc(5*var(--u))}
+  .tri .verse{font-size:calc(2.8*var(--u))}
+}
+
+/* স্মারকলিপি */
+.smk{display:flex;flex-direction:column;padding-top:calc(13*var(--u))}
+.smk .pn{flex:1;--caph:calc(20*var(--u));--leaf:calc(30*var(--u));--h2:calc(6.4*var(--u))}
+.objects{display:flex;justify-content:center;align-items:flex-end;gap:calc(3.4*var(--u))}
+.objects svg{height:calc(9*var(--u));width:auto}
+.evs{display:flex;flex-direction:column;align-items:center;gap:calc(1.2*var(--u))}
+.ev{display:flex;flex-direction:column;align-items:center;gap:calc(.2*var(--u))}
+.ev h3{font-family:var(--f-display);font-weight:400;font-size:calc(7*var(--u));color:var(--haldi);margin:0;line-height:1.3}
+.ev p{margin:0;font-size:calc(3.8*var(--u));line-height:1.55}
+.ev b{font-family:var(--f-ui);font-weight:600;color:var(--haldi)}
+.ev .rows{text-align:left}
+.evs .rule{width:calc(30*var(--u));opacity:.75}
+@container (orientation: landscape){
+  .smk{padding:min(9cqw, 15cqh) 3cqw 3cqw}
+  .smk .pn{--caph:min(8cqw, 14cqh);--leaf:min(18cqw, 34cqh)}
+  .evs{flex-direction:row;align-items:stretch;gap:5cqw}
+  .evs .rule{display:none}
+  .evs .ev + .ev{border-left:1.5px dashed rgba(251,239,214,.4);padding-left:5cqw}
+  .smk .pn{--h2:calc(8.4*var(--u))}
+  .smk .pbody{gap:calc(2*var(--u))}
+  .smk .ev h3{font-size:calc(8.6*var(--u))}
+  .smk .ev p{font-size:calc(4.6*var(--u))}
+  .smk .objects svg{height:calc(11*var(--u))}
+  .smk .orn{width:calc(34*var(--u))}
+}
+
+/* cover and last page: painting framed on sindoor red, words below (beside it on wide screens) */
+.finale{background:#8f2b21;background-image:var(--noise),radial-gradient(circle at 50% 35%,#a8402a,transparent 72%);color:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(3*var(--u));padding:calc(7*var(--u));text-align:center}
+.finale::before{content:"";position:absolute;inset:calc(3*var(--u));border:2px solid var(--haldi);outline:1px solid var(--haldi);outline-offset:calc(-1.6*var(--u));pointer-events:none}
+/* the cream mount sits on the image itself, so it always hugs the painting whatever the space */
+.finale{--txth:calc(58*var(--u))}
+.finale.front{--txth:calc(40*var(--u))}
+.finale figure{position:relative;margin:0;flex:0 1 auto;min-height:0;min-width:0;display:grid;place-items:center}
+.finale img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100cqh - var(--txth));background:#fbf6ec;border:2px solid var(--haldi);padding:calc(1.8*var(--u));box-shadow:0 calc(2*var(--u)) calc(5*var(--u)) calc(-2*var(--u)) rgba(0,0,0,.6)}
+.finale-txt{position:relative;display:flex;flex-direction:column;align-items:center;gap:calc(.8*var(--u));flex:none;text-wrap:balance}
+.finale.front .msg{font-size:calc(4.6*var(--u))}
+.finale p,.finale h1{margin:0;font-weight:400}
+.finale .msg{font-size:calc(4*var(--u));line-height:1.6}
+.finale .sm{font-family:var(--f-ui);font-size:calc(3.2*var(--u));color:#f3d9ae}
+.finale .sign{font-family:var(--f-display);font-size:calc(6.6*var(--u));line-height:1.25;color:var(--haldi)}
+.finale .dt{font-family:var(--f-ui);font-size:calc(3*var(--u));color:#f3d9ae}
+@container (orientation: landscape){
+  .finale{flex-direction:row;gap:5cqw;padding:calc(6*var(--u)) 5cqw}
+  .finale figure{height:100%;max-width:50%}
+  .finale img{max-height:100%}
+  .finale-txt{flex:1;gap:calc(1.6*var(--u))}
+  .finale .msg,.finale.front .msg{font-size:calc(5.2*var(--u))}
+  .finale .sm{font-size:calc(4*var(--u))}
+  .finale .sign{font-size:calc(9.4*var(--u))}
+  .finale .dt{font-size:calc(3.8*var(--u))}
+}
+
+/* controls float in the margin around the page */
+.pbtn{position:fixed;top:50%;z-index:20;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1.5px solid var(--haldi);background:rgba(44,10,7,.6);color:var(--cream);font-size:1.1rem;line-height:1;cursor:pointer;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.pbtn.prev{left:max(2px, calc(var(--gap) / 2 - 18px), env(safe-area-inset-left,0px))}
+.pbtn.next{right:max(2px, calc(var(--gap) / 2 - 18px), env(safe-area-inset-right,0px))}
+.pbtn:hover:not(:disabled){filter:brightness(1.1)}
+.pbtn:disabled{opacity:.35;cursor:default}
+.pbtn:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
+.pnum{position:fixed;top:max(2px, calc(var(--gap) / 2 - .6rem), env(safe-area-inset-top,0px));right:calc(var(--gap) + 6px);z-index:20;font-family:var(--f-ui);font-size:.75rem;line-height:1.2rem;color:var(--cream);background:rgba(44,10,7,.6);border-radius:99px;padding:0 9px;font-variant-numeric:tabular-nums}
+.hint{position:fixed;left:50%;bottom:calc(var(--gap) + 10px + env(safe-area-inset-bottom,0px));z-index:20;transform:translateX(-50%);font-family:var(--f-ui);font-size:.85rem;color:var(--cream);background:rgba(44,10,7,.8);border-radius:99px;padding:6px 14px;margin:0;white-space:nowrap;transition:opacity .6s}
+.hint.gone{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="orn" viewBox="0 0 300 70">
+      <g fill="none" stroke="#e8954a" stroke-width="2.2" stroke-linecap="round">
+        <path d="M150 62 C 120 60 96 50 70 50 C 46 50 34 40 40 30 C 46 22 58 28 54 36"/>
+        <path d="M150 62 C 180 60 204 50 230 50 C 254 50 266 40 260 30 C 254 22 242 28 246 36"/>
+        <path d="M118 58 C 104 44 84 40 68 30 C 58 24 64 12 74 16"/><path d="M182 58 C 196 44 216 40 232 30 C 242 24 236 12 226 16"/>
+        <path d="M14 56 C 30 56 40 60 50 58"/><path d="M286 56 C 270 56 260 60 250 58"/>
+      </g>
+      <g fill="#e8954a">
+        <path d="M150 6 C 160 22 164 40 150 62 C 136 40 140 22 150 6Z"/>
+        <path d="M150 62 C 128 54 118 36 122 22 C 136 32 144 46 150 62Z"/><path d="M150 62 C 172 54 182 36 178 22 C 164 32 156 46 150 62Z"/>
+        <circle cx="96" cy="44" r="3"/><circle cx="204" cy="44" r="3"/>
+      </g>
+    </symbol>
+    <!-- scalloped Mughal arch top, filled by the svg's fill -->
+    <symbol id="archcap" viewBox="0 0 300 70" preserveAspectRatio="none"><path d="M0 71 V64 C0 50 12 42 24 46 C24 34 40 26 52 32 C54 20 70 12 84 18 C86 6 104 0 118 6 C132 12 144 8 150 0 C156 8 168 12 182 6 C196 0 214 6 216 18 C230 12 246 20 248 32 C260 26 276 34 276 46 C288 42 300 50 300 64 V71Z"/></symbol>
+    <!-- long banana leaf: light veins running diagonally off the midrib, a few tears along the edge -->
+    <symbol id="leaf" viewBox="0 0 44 170">
+      <path d="M22 168 C 17 140 3 108 2 70 C 1 38 8 14 19 2 C 32 12 42 40 42 74 C 42 110 29 140 22 168Z" fill="#58b53a" stroke="#2c6a1f" stroke-width="1.3"/>
+      <path d="M21 150 L6 132 M21 136 L4 116 M20 122 L3 100 M20 108 L2 84 M19 94 L2 68 M19 80 L3 52 M18 66 L5 38 M18 52 L9 24 M22 148 L36 128 M22 134 L39 112 M22 120 L41 96 M21 106 L42 80 M21 92 L42 64 M20 78 L40 48 M20 64 L36 34 M19 50 L30 22" stroke="#a8de5c" stroke-width="1" fill="none" opacity=".85"/>
+      <path d="M2 84 L11 80 M4 116 L12 112 M42 64 L33 62 M39 112 L31 108" stroke="#c8643c" stroke-width="1.6"/>
+      <path d="M22 166 C 21 120 20 60 19 4" stroke="#e6f59a" stroke-width="2.2" fill="none"/>
+    </symbol>
+    <!-- banana leaves fanning from a corner, with a few jasmine buds -->
+    <symbol id="leaves" viewBox="0 0 180 170">
+      <use href="#leaf" x="68" y="0" width="44" height="170" transform="rotate(-60 90 168)"/>
+      <use href="#leaf" x="68" y="0" width="44" height="170" transform="rotate(-28 90 168)"/>
+      <use href="#leaf" x="68" y="0" width="44" height="170" transform="rotate(4 90 168)"/>
+      <use href="#leaf" x="68" y="0" width="44" height="170" transform="rotate(34 90 168)"/>
+      <g fill="#fff8ea" stroke="#d8c7a8" stroke-width=".6"><circle cx="52" cy="140" r="3.4"/><circle cx="59" cy="147" r="2.8"/><circle cx="45" cy="148" r="2.6"/><circle cx="128" cy="142" r="3.2"/><circle cx="135" cy="150" r="2.5"/><circle cx="66" cy="154" r="2.2"/></g>
+      <g fill="#e6a62c"><circle cx="52" cy="140" r="1.1"/><circle cx="128" cy="142" r="1.1"/></g>
+    </symbol>
+    <symbol id="rule" viewBox="0 0 200 20">
+      <g fill="none" stroke="#fbefd6" stroke-width="1.6" stroke-linecap="round"><path d="M26 8 H174 M34 12.5 H166"/><path d="M26 8 C 16 8 12 2 18 1 C 23 0 23 6 19 6"/><path d="M174 8 C 184 8 188 2 182 1 C 177 0 177 6 181 6"/></g>
+      <circle cx="8" cy="10" r="2.2" fill="#fbefd6"/><circle cx="192" cy="10" r="2.2" fill="#fbefd6"/>
+    </symbol>
+    <symbol id="rosette" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18" fill="none" stroke="#fbefd6" stroke-width="1.6"/>
+      <g fill="#fbefd6"><ellipse cx="20" cy="9.5" rx="3" ry="6"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(45 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(90 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(135 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(180 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(225 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(270 20 20)"/><ellipse cx="20" cy="9.5" rx="3" ry="6" transform="rotate(315 20 20)"/></g>
+      <circle cx="20" cy="20" r="3.6" fill="#c8643c" stroke="#fbefd6" stroke-width="1.2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<main class="stage">
+  <div class="book-wrap">
+    <div id="book">
+
+      <!-- 1 · cover: framed like the last page -->
+      <div class="page" data-density="hard">
+        <div class="pg finale front">
+          <figure><img src="img/cover.jpg" alt="বিবাহের নিমন্ত্রণ — বরযাত্রী আগমনের চিত্র"></figure>
+          <div class="finale-txt">
+            <h1 class="sign">বনশ্রী ও মিলনের শুভ বিবাহ</h1>
+            <p class="msg">আপনাদের সকলকে সাদরে নিমন্ত্রণ</p>
+          </div>
+        </div>
+      </div>
+      <!-- 2 · পরিচয় ও নিমন্ত্রণ: bride | poem | groom -->
+      <div class="page">
+        <div class="pg tpage tri">
+          <div class="pn side bride">
+            <svg class="leaves l" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <svg class="leaves r" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg><h2>পাত্রী</h2></div>
+            <div class="pbody">
+              <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+              <p class="kal">কল্যাণীয়া</p>
+              <p class="nm">বনশ্রী দত্ত</p>
+              <p class="det">পিতা – শ্রী স্বপন কুমার দত্ত<br>মাতা – শ্রীমতী মিঠু দত্ত<br>গ্রাম – বরকামতা, দেবিদ্বার, কুমিল্লা</p>
+              <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+              <div class="roses" aria-hidden="true"><svg viewBox="0 0 40 40"><use href="#rosette"/></svg><i></i><i></i><svg viewBox="0 0 40 40"><use href="#rosette"/></svg></div>
+            </div>
+          </div>
+          <div class="pn mid">
+            <svg class="leaves l" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <svg class="leaves r" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg><p class="praj">॥ শ্রী শ্রী প্রজাপতয়ে নমঃ ॥</p></div>
+            <div class="pbody">
+              <p class="verse">
+                শোনো শোনো সুধীজন, শোনো দিয়া মন<span class="dari">।</span><br>
+                শুভ এক পরিণয় বার্তা করি নিবেদন<span class="dari">॥</span><br>
+                কুমিল্লা জেলার মাঝে দেবিদ্বার ধাম<span class="dari">।</span><br>
+                বরকামতা গ্রামখানি অতি অভিরাম<span class="dari">॥</span><br>
+                শ্রীযুক্ত স্বপন কুমার দত্ত মহাশয়<span class="dari">।</span><br>
+                শ্রীমতী মিঠু দত্ত সহধর্মিণী হয়<span class="dari">॥</span><br>
+                তাঁহাদের আদরের কন্যা গুণবতী<span class="dari">।</span><br>
+                বনশ্রী নাম তাঁর, যেন লক্ষ্মী সরস্বতী<span class="dari">॥</span><br>
+                বগুড়ার শেরপুরে বাঘমারা গাঁয়<span class="dari">।</span><br>
+                শ্রীযুক্ত অজয় চন্দ্র মাহাতো বসত করে তায়<span class="dari">॥</span><br>
+                শ্রীমতী ভারতী রানী মাতা স্নেহময়ী<span class="dari">।</span><br>
+                পুত্র তাঁদের মিলন, সুশীল বিনয়ী<span class="dari">॥</span><br>
+                অগ্রহায়ণের আট তারিখ শুভক্ষণে<span class="dari">।</span><br>
+                বনশ্রী মিলনেরে বরিবে মালা-বরণে<span class="dari">॥</span><br>
+                চার হাত এক হবে অগ্নি সাক্ষী রাখি<span class="dari">।</span><br>
+                সাত পাকে বাঁধা হবে জনমের সাথী<span class="dari">॥</span><br>
+                বিবাহ উপলক্ষে তাই জানাই নিমন্ত্রণ<span class="dari">।</span><br>
+                সবান্ধবে বিবাহ আসরে করো আগমন<span class="dari">॥</span><br>
+                ধান দূর্বা হাতে লয়ে আশিস করিও<span class="dari">।</span><br>
+                পত্র দ্বারা নিমন্ত্রণের ত্রুটি না ধরিও<span class="dari">॥</span>
+              </p>
+              <svg class="orn" viewBox="0 0 300 70" aria-hidden="true" style="transform:scaleY(-1)"><use href="#orn"/></svg>
+            </div>
+          </div>
+          <div class="pn side groom">
+            <svg class="leaves l" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <svg class="leaves r" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg><h2>পাত্র</h2></div>
+            <div class="pbody">
+              <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+              <p class="kal">কল্যাণীয়</p>
+              <p class="nm">মিলন মাহাতো</p>
+              <p class="det">পিতা – শ্রী অজয় চন্দ্র মাহাতো<br>মাতা – শ্রীমতী ভারতী রানী<br>ঠিকানা – বাঘমারা, শেরপুর, বগুড়া</p>
+              <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+              <div class="roses" aria-hidden="true"><svg viewBox="0 0 40 40"><use href="#rosette"/></svg><i></i><i></i><svg viewBox="0 0 40 40"><use href="#rosette"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · স্মারকলিপি -->
+      <div class="page">
+        <div class="pg tpage smk">
+          <div class="pn">
+            <svg class="leaves l" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <svg class="leaves r" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
+            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg><h2>স্মারকলিপি</h2></div>
+            <div class="pbody">
+              <div class="objects" aria-hidden="true">
+              <svg viewBox="0 0 50 70"><path d="M25 2 L29 14 H21Z" fill="#b3311f"/><ellipse cx="25" cy="18" rx="9" ry="5" fill="#c93a24" stroke="#5a1a12"/><path d="M12 40 C 8 24 42 24 38 40 C 36 50 14 50 12 40Z" fill="#c93a24" stroke="#5a1a12" stroke-width="1.3"/><path d="M14 54 C 10 44 40 44 36 54 C 34 66 16 66 14 54Z" fill="#c93a24" stroke="#5a1a12" stroke-width="1.3"/><path d="M15 38 H35 M16 54 H34" stroke="#fbefd6" stroke-width="1.2" stroke-dasharray="2 2"/></svg>
+              <svg viewBox="0 0 70 60"><path d="M34 56 C 10 46 4 26 12 12 C 18 4 30 8 34 18 C 32 30 34 44 34 56Z" fill="#4f9a34" stroke="#22501a" stroke-width="1.3"/><path d="M36 56 C 60 46 66 26 58 12 C 52 4 40 8 36 18 C 38 30 36 44 36 56Z" fill="#6cb243" stroke="#22501a" stroke-width="1.3"/><path d="M34 54 C 26 40 20 26 18 14 M36 54 C 44 40 50 26 52 14" stroke="#c9e27a" fill="none"/></svg>
+              <svg viewBox="0 0 80 60"><ellipse cx="40" cy="18" rx="30" ry="7" fill="#9a5b2a" stroke="#5a1a12" stroke-width="1.3"/><g fill="#fff8ea" stroke="#d8c7a8"><circle cx="28" cy="14" r="6"/><circle cx="40" cy="12" r="6"/><circle cx="52" cy="14" r="6"/><circle cx="34" cy="8" r="5.5"/><circle cx="46" cy="8" r="5.5"/></g><path d="M12 20 C 8 46 22 58 40 58 C 58 58 72 46 68 20Z" fill="#b8763c" stroke="#5a1a12" stroke-width="1.3"/></svg>
+              <svg viewBox="0 0 70 60"><path d="M8 34 C 8 14 30 4 46 10 C 62 16 66 34 54 44 C 46 50 30 54 18 56 L 10 58 C 14 52 8 44 8 34Z" fill="#fff8ea" stroke="#5a1a12" stroke-width="1.4"/><path d="M50 36 C 54 26 44 16 34 20 C 26 24 28 34 36 34 C 42 34 42 28 38 27" fill="none" stroke="#5a1a12" stroke-width="1.3"/></svg>
+            </div>
+              <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+              <div class="evs">
+            <div class="ev">
+              <h3>শুভ বিবাহ</h3>
+              <p>৮ই অগ্রহায়ণ, ১৪৩৩<br>(ইং ২৫শে নভেম্বর, ২০২৬), বুধবার</p>
+              <div class="rows">
+                <p><b>লগ্ন:</b> রাত্রি ১১টা ২৬ মিনিট হতে রাত্রি ৩টা</p>
+                <p><b>আপ্যায়ন:</b> সন্ধ্যা ৮টা হতে</p>
+                <p><b>বিবাহ বাসর:</b> দেশপ্রিয় সেন্টার,<br>লাকসাম রোড, কুমিল্লা</p>
+              </div>
+            </div>
+            <svg class="rule" viewBox="0 0 200 20" aria-hidden="true"><use href="#rule"/></svg>
+            <div class="ev">
+              <h3>বৌভাত</h3>
+              <p>১১ই অগ্রহায়ণ, ১৪৩৩<br>(ইং ২৮শে নভেম্বর, ২০২৬), শনিবার</p>
+              <div class="rows">
+                <p><b>প্রীতিভোজ:</b> দুপুর ১২টা হতে</p>
+                <p><b>স্থান:</b> পাত্রের নিজ পিত্রালয়<br>বাঘমারা, শেরপুর, বগুড়া</p>
+              </div>
+            </div>
+              </div>
+              <svg class="orn" viewBox="0 0 300 70" aria-hidden="true" style="transform:scaleY(-1)"><use href="#orn"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · শেষ পাতা: yagna painting + closing message -->
+      <div class="page" data-density="hard">
+        <div class="pg finale">
+          <figure><img src="img/yagna.jpg" alt="অগ্নিসাক্ষী রেখে খই আহুতি দিচ্ছেন বর ও কনে"></figure>
+          <div class="finale-txt">
+            <p class="msg">আপনার সবান্ধব উপস্থিতি ও আশীর্বাদ<br>নবদম্পতির নতুন জীবনের পাথেয়</p>
+            <p class="sm">বিনীত</p>
+            <p class="sign">দত্ত ও মাহাতো পরিবার</p>
+            <p class="dt">শুভ বিবাহ · ৮ই অগ্রহায়ণ ১৪৩৩</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <nav aria-label="পাতা উল্টান">
+    <button class="pbtn prev" id="prev" type="button" aria-label="আগের পাতা">←</button>
+    <span class="pnum" id="pnum" aria-live="polite">প্রচ্ছদ</span>
+    <button class="pbtn next" id="next" type="button" aria-label="পরের পাতা">→</button>
+  </nav>
+  <p class="hint" id="hint">পাতায় ছুঁয়ে দিন বা টেনে পাতা উল্টান</p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const bn = s => String(s).replace(/\d/g, d => "০১২৩৪৫৬৭৮৯"[d]);
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const labels = ["প্রচ্ছদ","পরিচয় ও নিমন্ত্রণ","স্মারকলিপি","শেষ পাতা"];
+
+  /* ---- book ---- */
+  let book = null;
+  function update(i){
+    const n = book.getPageCount();
+    $("pnum").textContent = bn(i+1) + " / " + bn(n);
+    $("pnum").setAttribute("aria-label", labels[i] || "");
+    $("prev").disabled = i === 0;
+    $("next").textContent = i >= n-1 ? "↺" : "→";
+    $("next").setAttribute("aria-label", i >= n-1 ? "আবার শুরু" : "পরের পাতা");
+    if (i > 0) $("hint").classList.add("gone");
+  }
+  // back to the cover with a quick fade (page-flip's own multi-page flip does nothing in single-page mode)
+  const restart = () => {
+    const w = $("book").parentElement;
+    w.style.transition = "opacity .35s"; w.style.opacity = 0;
+    setTimeout(() => { book.turnToPage(0); update(0); w.style.opacity = 1; }, 360);
+  };
+  function initBook(){
+    if (!window.St || !St.PageFlip) return;
+    // page shape = the screen's shape, so each page fills it
+    const wrap = $("book").parentElement;
+    shape = wrap.clientWidth / wrap.clientHeight;
+    book = new St.PageFlip($("book"), {
+      width: wrap.clientWidth, height: wrap.clientHeight, size: "stretch",
+      // minWidth = full width keeps page-flip in single-page mode on every screen
+      minWidth: wrap.clientWidth, maxWidth: wrap.clientWidth, minHeight: wrap.clientHeight, maxHeight: wrap.clientHeight,
+      showCover: false, usePortrait: true, drawShadow: true, maxShadowOpacity: .55,
+      flippingTime: reduce ? 300 : 1000, mobileScrollSupport: false, swipeDistance: 20
+    });
+    book.loadFromHTML(document.querySelectorAll("#book .page"));
+    book.on("flip", e => update(e.data));
+    const start = +(location.hash.match(/^#p(\d+)$/) || [])[1] || 0;
+    if (start) book.turnToPage(Math.min(start, book.getPageCount()-1));
+    update(book.getCurrentPageIndex());
+    // tapping the last page starts again from the cover
+    const onLast = e => {
+      if (book.getCurrentPageIndex() < book.getPageCount()-1) return;
+      e.stopPropagation(); if (e.cancelable) e.preventDefault(); restart();
+    };
+    wrap.addEventListener("mousedown", onLast, true);
+    wrap.addEventListener("touchstart", onLast, {capture:true, passive:false});
+  }
+  // the page shape is fixed when the book is built, so rebuild if the screen shape changes (e.g. phone rotation)
+  let shape = 0, rt;
+  addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => {
+    const w = $("book").parentElement;
+    if (!book || Math.abs(w.clientWidth / w.clientHeight - shape) < .03) return;
+    history.replaceState(null, "", "#p" + book.getCurrentPageIndex()); location.reload();
+
+  }, 400); });
+  setTimeout(() => $("hint").classList.add("gone"), 6000);
+  $("next").addEventListener("click", ()=>{
+    if (!book) return;
+    if (book.getCurrentPageIndex() >= book.getPageCount()-1) restart(); else book.flipNext();
+  });
+  $("prev").addEventListener("click", ()=> book && book.flipPrev());
+  addEventListener("keydown", e=>{
+    if (!book) return;
+    if (e.key === "ArrowRight") book.getCurrentPageIndex() >= book.getPageCount()-1 ? restart() : book.flipNext();
+    if (e.key === "ArrowLeft") book.flipPrev();
+  });
+  const imgs = [...document.querySelectorAll("#book img")];
+  Promise.all(imgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))).then(initBook);
+
+  /* ---- marigold petals drifting behind the book ---- */
+  (function petals(){
+    if (!window.THREE) return;
+    const canvas = $("petals"); let renderer;
+    try { renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true}); } catch(e){ return; }
+    renderer.setPixelRatio(Math.min(devicePixelRatio||1, 2));
+    const scene = new THREE.Scene(), cam = new THREE.PerspectiveCamera(40, 1, .1, 100); cam.position.z = 10;
+    const shape = new THREE.Shape();
+    shape.moveTo(0,-.5); shape.bezierCurveTo(.42,-.3,.36,.32,0,.5); shape.bezierCurveTo(-.36,.32,-.42,-.3,0,-.5);
+    const geo = new THREE.ShapeGeometry(shape, 10); geo.scale(.2,.3,1);
+    const mat = new THREE.MeshBasicMaterial({side:THREE.DoubleSide, transparent:true, opacity:.9});
+    const N = 90, mesh = new THREE.InstancedMesh(geo, mat, N);
+    const pal = ["#f28c1b","#f6a821","#e86a12","#ffc23d","#f39a1e","#fff3dc"];
+    const P = [], d = new THREE.Object3D(), c = new THREE.Color();
+    let vw = 8, vh = 8;
+    const spawn = (p, top) => {
+      p.x = (Math.random()-.5)*vw*1.1; p.y = top ? vh/2 + Math.random()*1.5 : (Math.random()-.5)*vh;
+      p.z = (Math.random()-.5)*4; p.vy = .3 + Math.random()*.4; p.amp = .3 + Math.random()*.6;
+      p.f = .4 + Math.random()*.8; p.ph = Math.random()*6.28;
+      p.rx = Math.random()*6; p.ry = Math.random()*6; p.rz = Math.random()*6;
+      p.sx = (Math.random()-.5)*2.4; p.sy = (Math.random()-.5)*2.4; p.sz = (Math.random()-.5)*1.4; p.s = .7 + Math.random()*.7;
+    };
+    for (let i=0;i<N;i++){ const p = {}; spawn(p,false); P.push(p); c.set(pal[Math.floor(Math.random()*pal.length)]); mesh.setColorAt(i,c); }
+    scene.add(mesh);
+    function resize(){
+      const w = innerWidth, h = innerHeight; renderer.setSize(w, h, false);
+      cam.aspect = w/h; cam.updateProjectionMatrix(); vh = 2*Math.tan(THREE.MathUtils.degToRad(20))*10; vw = vh*cam.aspect;
+    }
+    resize(); addEventListener("resize", resize);
+    let last = performance.now(), t = 0;
+    function frame(now){
+      const dt = Math.min(.05, (now-last)/1000); last = now; t += dt;
+      for (let i=0;i<N;i++){
+        const p = P[i];
+        p.y -= p.vy*dt; p.x += Math.sin(t*p.f + p.ph)*p.amp*dt; p.rx += p.sx*dt; p.ry += p.sy*dt; p.rz += p.sz*dt;
+        if (p.y < -vh/2 - .6) spawn(p, true);
+        d.position.set(p.x, p.y, p.z); d.rotation.set(p.rx, p.ry, p.rz); d.scale.setScalar(p.s); d.updateMatrix(); mesh.setMatrixAt(i, d.matrix);
+      }
+      mesh.instanceMatrix.needsUpdate = true; renderer.render(scene, cam);
+      if (!reduce && !document.hidden) requestAnimationFrame(frame);
+    }
+    document.addEventListener("visibilitychange", ()=>{ if (!document.hidden && !reduce){ last = performance.now(); requestAnimationFrame(frame); } });
+    requestAnimationFrame(frame);
+  })();
+})();
+</script>
+
+</body>
+</html>
