@@ -55,7 +55,7 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
 .pcap{position:relative;z-index:1;flex:none}
 .pcap .cap{display:block;width:100%;height:var(--caph);fill:var(--bark)}
 .pcap h2{position:absolute;left:0;right:0;bottom:0;margin:0;font-family:var(--f-display);font-weight:400;font-size:var(--h2);line-height:1.2;color:var(--cream)}
-.pcap .praj{position:absolute;left:0;right:0;bottom:calc(.4*var(--u));margin:0;font-size:calc(2.8*var(--u));color:var(--haldi)}
+.praj{margin:0;font-size:calc(3*var(--u));color:var(--haldi)}
 .pbody{position:relative;z-index:1;flex:1;min-height:0;background:var(--bark);margin-top:-1px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(.9*var(--u));padding:calc(.6*var(--u)) calc(2.6*var(--u)) calc(3*var(--u))}
 .rule{width:min(100%, calc(40*var(--u)));height:auto;flex:none}
 .pn .kal{margin:0;font-size:calc(2.8*var(--u));color:#e9cfa5}
@@ -88,8 +88,8 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
   .tri .pn .nm{font-size:calc(7.4*var(--u))}
   .tri .pn .det{font-size:calc(4*var(--u));line-height:1.65}
   .tri .pn .kal{font-size:calc(3.8*var(--u))}
-  .tri .pcap .praj{font-size:calc(3.4*var(--u))}
-  .tri .verse{font-size:calc(3.3*var(--u));line-height:1.5}
+  .tri .praj{font-size:calc(3.4*var(--u))}
+  .tri .verse{font-size:calc(3.15*var(--u));line-height:1.5}
   .tri .roses svg{width:calc(7*var(--u));height:calc(7*var(--u))}
 }
 
@@ -131,8 +131,9 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
 /* the cream mount sits on the image itself, so it always hugs the painting whatever the space */
 .finale{--txth:calc(58*var(--u))}
 .finale.front{--txth:calc(40*var(--u))}
-.finale figure{position:relative;margin:0;flex:0 1 auto;min-height:0;min-width:0;display:grid;place-items:center}
-.finale img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(100cqh - var(--txth));background:#fbf6ec;border:2px solid var(--haldi);padding:calc(1.8*var(--u));box-shadow:0 calc(2*var(--u)) calc(5*var(--u)) calc(-2*var(--u)) rgba(0,0,0,.6)}
+/* image limits come straight from the page size (no % of a flex/grid box), so every browser shows the whole painting */
+.finale figure{position:relative;margin:0;flex:none}
+.finale img{display:block;width:auto;height:auto;max-width:calc(100cqw - 14*var(--u));max-height:calc(100cqh - var(--txth));object-fit:contain;background:#fbf6ec;border:2px solid var(--haldi);padding:calc(1.8*var(--u));box-shadow:0 calc(2*var(--u)) calc(5*var(--u)) calc(-2*var(--u)) rgba(0,0,0,.6)}
 .finale-txt{position:relative;display:flex;flex-direction:column;align-items:center;gap:calc(.8*var(--u));flex:none;text-wrap:balance}
 .finale.front .msg{font-size:calc(4.6*var(--u))}
 .finale p,.finale h1{margin:0;font-weight:400}
@@ -142,8 +143,7 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
 .finale .dt{font-family:var(--f-ui);font-size:calc(3*var(--u));color:#f3d9ae}
 @container (orientation: landscape){
   .finale{flex-direction:row;gap:5cqw;padding:calc(6*var(--u)) 5cqw}
-  .finale figure{height:100%;max-width:50%}
-  .finale img{max-height:100%}
+  .finale img{max-width:50cqw;max-height:calc(100cqh - 12*var(--u))}
   .finale-txt{flex:1;gap:calc(1.6*var(--u))}
   .finale .msg,.finale.front .msg{font-size:calc(5.2*var(--u))}
   .finale .sm{font-size:calc(4*var(--u))}
@@ -159,8 +159,6 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
 .pbtn:disabled{opacity:.35;cursor:default}
 .pbtn:focus-visible{outline:2px solid var(--cream);outline-offset:3px}
 .pnum{position:fixed;top:max(2px, calc(var(--gap) / 2 - .6rem), env(safe-area-inset-top,0px));right:calc(var(--gap) + 6px);z-index:20;font-family:var(--f-ui);font-size:.75rem;line-height:1.2rem;color:var(--cream);background:rgba(44,10,7,.6);border-radius:99px;padding:0 9px;font-variant-numeric:tabular-nums}
-.hint{position:fixed;left:50%;bottom:calc(var(--gap) + 10px + env(safe-area-inset-bottom,0px));z-index:20;transform:translateX(-50%);font-family:var(--f-ui);font-size:.85rem;color:var(--cream);background:rgba(44,10,7,.8);border-radius:99px;padding:6px 14px;margin:0;white-space:nowrap;transition:opacity .6s}
-.hint.gone{opacity:0;pointer-events:none}
 </style>
 </head>
 <body>
@@ -246,7 +244,7 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
           <div class="pn mid">
             <svg class="leaves l" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
             <svg class="leaves r" viewBox="0 0 180 170" aria-hidden="true"><use href="#leaves"/></svg>
-            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg><p class="praj">॥ শ্রী শ্রী প্রজাপতয়ে নমঃ ॥</p></div>
+            <div class="pcap"><svg class="cap" viewBox="0 0 300 70" preserveAspectRatio="none" aria-hidden="true"><use href="#archcap"/></svg></div>
             <div class="pbody">
               <p class="verse">
                 শোনো শোনো সুধীজন, শোনো দিয়া মন<span class="dari">।</span><br>
@@ -270,6 +268,7 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
                 ধান দূর্বা হাতে লয়ে আশিস করিও<span class="dari">।</span><br>
                 পত্র দ্বারা নিমন্ত্রণের ত্রুটি না ধরিও<span class="dari">॥</span>
               </p>
+              <p class="praj">॥ শ্রী শ্রী প্রজাপতয়ে নমঃ ॥</p>
               <svg class="orn" viewBox="0 0 300 70" aria-hidden="true" style="transform:scaleY(-1)"><use href="#orn"/></svg>
             </div>
           </div>
@@ -371,7 +370,6 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
     $("prev").disabled = i === 0;
     $("next").textContent = i >= n-1 ? "↺" : "→";
     $("next").setAttribute("aria-label", i >= n-1 ? "আবার শুরু" : "পরের পাতা");
-    if (i > 0) $("hint").classList.add("gone");
   }
   // back to the cover with a quick fade (page-flip's own multi-page flip does nothing in single-page mode)
   const restart = () => {
@@ -412,7 +410,6 @@ body{margin:0;overflow:hidden;background:var(--velvet-2);background-image:radial
     history.replaceState(null, "", "#p" + book.getCurrentPageIndex()); location.reload();
 
   }, 400); });
-  setTimeout(() => $("hint").classList.add("gone"), 6000);
   $("next").addEventListener("click", ()=>{
     if (!book) return;
     if (book.getCurrentPageIndex() >= book.getPageCount()-1) restart(); else book.flipNext();
